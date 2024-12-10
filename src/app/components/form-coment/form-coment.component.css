@@ -1,0 +1,30 @@
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  }
+  
+
+.card {
+  grid-area: 2 / 2 / 7 / 4;
+  max-width: 300px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #fff;
+}
+
+
+  
+  .list { 
+    grid-area: 2 / 5 / 7 / 8;
+    max-width: 700px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #fff; }

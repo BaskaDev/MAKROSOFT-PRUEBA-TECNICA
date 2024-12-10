@@ -1,0 +1,53 @@
+.card {
+    position: relative; /* Asegura que la tarjeta esté posicionada correctamente */
+    width: 100%; /* Ocupa el 100% del ancho del contenedor */
+    height: 100%; /* Ocupa el 100% de la altura del contenedor */
+    perspective: 1000px; /* Mantener el efecto de profundidad */
+  }
+  
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.999s;
+    position: absolute; /* Asegura que la tarjeta se quede fija dentro de su contenedor */
+  }
+  
+  .card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front,
+  .card-back {
+    position: absolute; /* Ambos lados de la tarjeta ocupan el mismo espacio */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backface-visibility: hidden; /* Esconde el lado trasero cuando está rotado */
+  }
+  
+  .card-front {
+    background-color: #fff; /* Color del frente de la tarjeta */
+    transform: rotateY(0deg); /* No rotado al principio */
+  }
+  
+  .card-back {
+   
+    color: #fff;
+    font-size: 24px;
+    transform: rotateY(180deg); /* Rotado 180 grados para mostrarlo en el reverso */
+    display: flex;
+    justify-content: center; /* Centra el contenido del reverso */
+    align-items: center; /* Centra el contenido verticalmente */
+   
+    border-radius: 10px;
+  }
+  
+  .main-content {
+    display: flex;
+  
+    height: 100%; /* Asegura que ocupe el 100% de la tarjeta */
+    overflow: hidden; /* Evita que el contenido se desborde */
+  }
+  

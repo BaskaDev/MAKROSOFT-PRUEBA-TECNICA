@@ -1,0 +1,148 @@
+<div class="card">
+  <div class="card-inner">
+    <div class="card-front">
+      <main class="main-content">  
+        <div class="items">
+          <mat-tab-group>
+            <mat-tab label="Lista de Álbumes">
+              <div>
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                
+                  <ng-container matColumnDef="Album">
+                    <th mat-header-cell *matHeaderCellDef> Álbum </th>
+                    <td mat-cell *matCellDef="let album"> {{ album.name }} </td>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="Cubierta">
+                    <th mat-header-cell *matHeaderCellDef> Cubierta </th>
+                    <td mat-cell *matCellDef="let album">
+                      <img width="200px" height="auto" [src]="album.cover" alt="Cubierta del álbum" class="album-cover" />
+                    </td>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="Lanzamiento">
+                    <th mat-header-cell *matHeaderCellDef> Lanzamiento </th>
+                    <td mat-cell *matCellDef="let album"> 
+                      {{ formatReleaseDate(album.releaseDate) }} 
+                    </td>
+                  </ng-container>
+                  
+      
+                  <ng-container matColumnDef="Descripción">
+                    <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                    <td mat-cell *matCellDef="let album"> {{ album.description }} </td>
+                  </ng-container>
+      
+              
+                  <ng-container matColumnDef="Género">
+                    <th mat-header-cell *matHeaderCellDef> Género </th>
+                    <td mat-cell *matCellDef="let album"> {{ album.genre }} </td>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="Disquera">
+                    <th mat-header-cell *matHeaderCellDef> Disquera </th>
+                    <td mat-cell *matCellDef="let album"> {{ album.recordLabel }} </td>
+                  </ng-container>
+    
+                  <ng-container matColumnDef="Acciones">
+                    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                    <td mat-cell *matCellDef="let album"> 
+                      <button mat-button color="primary" (click)="showAlbum(album.id)">Ver Album</button>
+                    </td>
+                  </ng-container>
+      
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[4, 8, 16]" showFirstLastButtons></mat-paginator>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </main>
+      
+    </div>
+    <div class="card-back">
+      <main class="main-content">  
+        <div class="items">
+          <mat-tab-group>
+           
+              <div>
+                @if(selectedAlbum){
+                  <mat-tab label= {{selectedAlbum.name}} >
+                  <table mat-table class="mat-elevation-z8" [dataSource]="[selectedAlbum]">
+                    <!-- Columna: Cubierta -->
+                    <ng-container matColumnDef="Cubierta">
+                      <th mat-header-cell *matHeaderCellDef> Cubierta </th>
+                      <td mat-cell *matCellDef="let album">
+                        <img width="200px" height="auto" [src]="album.cover" alt="Cubierta del álbum" class="album-cover" />
+                      </td>
+
+                   
+                    </ng-container>
+                
+                    <!-- Columna: Nombre del Álbum -->
+                    <ng-container matColumnDef="Album">
+                      <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                      <td mat-cell *matCellDef="let album"> {{ album.description }} </td>
+                     
+                    </ng-container>
+                
+                    <!-- Columna: Fecha de Lanzamiento -->
+                    <ng-container matColumnDef="Lanzamiento">
+                      <th mat-header-cell *matHeaderCellDef> Lanzamiento </th>
+                      <td mat-cell *matCellDef="let album">
+                        {{ formatReleaseDate(album.releaseDate) }}
+                      </td>
+                    </ng-container>
+                
+                    <!-- Columna: Género -->
+                    <ng-container matColumnDef="Género">
+                      <th mat-header-cell *matHeaderCellDef> Género </th>
+                      <td mat-cell *matCellDef="let album"> {{ album.genre }} </td>
+                    </ng-container>
+                
+                    <!-- Columna: Disquera -->
+                    <ng-container matColumnDef="Disquera">
+                      <th mat-header-cell *matHeaderCellDef> Disquera </th>
+                      <td mat-cell *matCellDef="let album"> {{ album.recordLabel }} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="Acciones">
+                      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                      <td mat-cell *matCellDef="let album"> 
+                        <button mat-button color="primary" (click)="showAlbum(album.id)">Ver lista</button>
+                        
+                        <button  mat-raised-button color="primary" (click)="goComments(album.id)">
+                          Comentar
+                        </button>
+                      </td>
+                      
+                    </ng-container>
+                  
+                    
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  
+                  </mat-tab>
+
+
+                }
+              </div>
+           
+          </mat-tab-group>
+        </div>
+      </main>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
